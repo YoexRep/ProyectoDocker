@@ -20,7 +20,7 @@ Este proyecto es un boilerplate que utiliza Docker para montar un entorno de des
 2. Copia el archivo .env.example a .env
 3. Edita el archivo .env con tus variables de entorno.
 4. Verifica el script de la bd, para crear tablas e insertar data
-5. Corre el comando: docker compose up --build
+5. Corre el comando: `docker compose up --build`
 
 ## 🚀 Accede a los servicios:
 
