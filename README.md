@@ -14,7 +14,7 @@ Este proyecto es un boilerplate que utiliza Docker para montar un entorno de des
 - [Docker](https://www.docker.com/get-started) instalado en tu máquina.
 - [Docker Compose](https://docs.docker.com/compose/install/) instalado.
 
-## 🚀 Cómo Empezar
+## 🤔 Cómo Empezar
 
 1. Clona el repositorio
 2. Copia el archivo .env.example a .env
@@ -22,7 +22,7 @@ Este proyecto es un boilerplate que utiliza Docker para montar un entorno de des
 4. Verifica el script de la bd, para crear tablas e insertar data
 5. Corre el comando: `docker compose up --build`
 
-## 🚀 Accede a los servicios:
+## 💻 Accede a los servicios:
 
 Frontend (Next.js): http://localhost:3000
 
