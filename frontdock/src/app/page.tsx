@@ -1,21 +1,26 @@
-'use client';
+"use client";
 
-import { saludame } from '../services/api';
+import { saludame } from "../services/api";
 
 export default function Home() {
-  const handleSaludo = async () => {
+  const handleSaludo = async (codsaludo: string) => {
     try {
-      const saludo = await saludame();
-      alert(saludo);
+      const saludo = await saludame(codsaludo);
+      if (Array.isArray(saludo) && saludo.length > 0) {
+        alert(saludo[0].f_saludo);
+      } else {
+        alert("No saludo found");
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   return (
     <div>
-      <h1>Hola Mundo 1</h1>
-      <button onClick={handleSaludo}>Saludame hola </button>
+      <h1>Saludos:</h1>
+      <button onClick={() => handleSaludo('1')}>Saludame con 1 </button>
+      <button onClick={() => handleSaludo('2')}>Saludame con 2 </button>
     </div>
   );
-} 
+}

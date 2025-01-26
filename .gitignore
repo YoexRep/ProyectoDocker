@@ -1,0 +1,9 @@
+#Ignorar arhivos de la api
+.env
+apidock/node_modules
+apidock/.env
+
+
+#Ignorar arhivos del frontend
+frontdock/node_modules
+frontdock/.env

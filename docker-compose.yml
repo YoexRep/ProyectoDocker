@@ -1,8 +1,10 @@
-version: '3.9'
+version: "3.9"
 
 services:
+  # Servicio de la API
   apidock:
     build: ./apidock
+    container_name: container_apidock
     ports:
       - "4000:4000"
     volumes:
@@ -13,8 +15,10 @@ services:
     networks:
       - docknet
 
+  # Servicio del Frontend
   frontdock:
     build: ./frontdock
+    container_name: container_frontdock
     ports:
       - "3000:3000"
     volumes:
@@ -33,6 +37,36 @@ services:
     networks:
       - docknet
 
+  # Servicio de la base de datos
+  db:
+    image: postgres:latest
+    container_name: container_db_postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5433:5432" #Usamos el 5433 para no tener conflicto con el 5432 de la base de datos local
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - docknet
+
+  # Servicio de pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: container_pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    networks:
+      - docknet
+
 networks:
   docknet:
     driver: bridge
+
+volumes:
+  db_data:

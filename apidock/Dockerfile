@@ -9,4 +9,4 @@ RUN npm install --include=dev
 COPY . .
 EXPOSE 4000
 # Usa nodemon desde node_modules
-CMD ["npx", "nodemon", "index.js"]  
+CMD ["npx", "nodemon", "src/index.js"]  
