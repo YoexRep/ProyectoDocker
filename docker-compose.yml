@@ -38,8 +38,8 @@ services:
       - docknet
 
   # Servicio de la base de datos
-  db:
-    image: postgres:latest
+  dbdock:
+    build: ./dbdock
     container_name: container_db_postgres
     environment:
       - POSTGRES_DB=${DB_NAME}
