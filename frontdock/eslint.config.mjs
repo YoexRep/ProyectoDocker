@@ -40,7 +40,8 @@ export default [
     },
     rules: {
       ...testingLibraryPlugin.configs.react.rules,
-      // Aquí puedes agregar o personalizar reglas específicas de testing-library
+      // Reglas específicas de testing-library
+  
       'testing-library/no-debugging-utils': 'warn',
       'testing-library/no-dom-import': 'error',
       'testing-library/no-node-access': 'error',

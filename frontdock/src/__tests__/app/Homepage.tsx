@@ -6,14 +6,14 @@ import Homepage from '../../app/page';
 //Para agrupar las pruebas del homepage
 describe("Homepage", () => {
 
-    beforeEach(() => {
+    // beforeEach(() => {
 
-        render(<Homepage />);
 
-    });
+
+    // });
 
 it("should renders 'Saludos'", () => {
-
+    render(<Homepage />);
  
     expect(screen.getByText("Saludos:")).toBeInTheDocument();
 
@@ -21,7 +21,7 @@ it("should renders 'Saludos'", () => {
 });
 
 it("should renders 'Saludame con 1'", () => {
-
+    render(<Homepage />);
     expect(screen.getByText(/Saludame con 1/i)).toBeInTheDocument();
 
 
