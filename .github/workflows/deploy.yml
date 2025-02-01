@@ -36,6 +36,11 @@ jobs:
           docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock ./apidock
           docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock
 
+      - name: Build and push Database Docker image
+        run: |
+          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_dbdock ./dbdock
+          docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_dbdock
+
       - name: Install GKE auth plugin
         run: gcloud components install gke-gcloud-auth-plugin
 
@@ -50,3 +55,7 @@ jobs:
       - name: Deploy API to GKE
         run: |
           kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock --namespace=default
+
+      - name: Deploy Database to GKE
+        run: |
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_DB }} dbdock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_dbdock --namespace=default
