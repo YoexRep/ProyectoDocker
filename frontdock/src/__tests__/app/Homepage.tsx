@@ -11,7 +11,7 @@ describe("Homepage", () => {
   it("should renders 'Saludos'", () => {
     render(<Homepage />);
 
-    expect(screen.getByText("Saludos:")).toBeInTheDocument();
+    expect(screen.getByText("Saludos ahora con worflows:")).toBeInTheDocument();
   });
 
   it("should renders 'Saludame con 1'", () => {
