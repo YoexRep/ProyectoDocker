@@ -49,4 +49,4 @@ jobs:
 
       - name: Deploy API to GKE
         run: |
-          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/c
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock --namespace=default
