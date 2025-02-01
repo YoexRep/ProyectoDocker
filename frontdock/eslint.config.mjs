@@ -1,50 +1,27 @@
-import js from '@eslint/js';
-import nextPlugin from '@next/eslint-plugin-next';
-import jestDomPlugin from 'eslint-plugin-jest-dom';
-import testingLibraryPlugin from 'eslint-plugin-testing-library';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
 
-export default [
-  // Configuración básica de ESLint
-  js.configs.recommended,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-  // Configuración de Next.js
-  {
-    plugins: {
-      '@next/next': nextPlugin,
-    },
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.config({
+    extends: ["next/core-web-vitals", "next/typescript", "prettier"],
     rules: {
-      ...nextPlugin.configs.recommended.rules,
-      // Aquí puedes agregar o personalizar reglas específicas de Next.js
-    },
-  },
+      semi: ["error"],
+      quotes: ["error", "double"],
+      "prefer-arrow-callback": ["error"],
+      "prefer-template": ["error"],
 
-  // Configuración de jest-dom
-  {
-    plugins: {
-      'jest-dom': jestDomPlugin,
-    },
-    rules: {
-      ...jestDomPlugin.configs.recommended.rules,
-      // Aquí puedes agregar o personalizar reglas específicas de jest-dom
-      'jest-dom/prefer-checked': 'error',
-      'jest-dom/prefer-enabled-disabled': 'error',
-      'jest-dom/prefer-required': 'error',
-      'jest-dom/prefer-to-have-attribute': 'error',
-    },
-  },
+      //Colocar todas las reglas que necesite aqui 
 
-  // Configuración de testing-library
-  {
-    plugins: {
-      'testing-library': testingLibraryPlugin,
-    },
-    rules: {
-      ...testingLibraryPlugin.configs.react.rules,
-      // Reglas específicas de testing-library
-  
-      'testing-library/no-debugging-utils': 'warn',
-      'testing-library/no-dom-import': 'error',
-      'testing-library/no-node-access': 'error',
-    },
-  },
+    }
+  })
 ];
+
+export default eslintConfig;

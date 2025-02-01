@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apidock
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apidock
+  template:
+    metadata:
+      labels:
+        app: apidock
+    spec:
+      containers:
+        - name: apidock
+          image: us-east5-docker.pkg.dev/skilled-duality-441619-j5/protectodockergcloud/container_apidock
+          ports:
+            - containerPort: 4000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: DB_HOST
+              value: "dbdock-service" # El nombre del servicio de la base de datos en Kubernetes
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              value: "bd_saludos"
+            - name: DB_PORT
+              value: "5432"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apidock-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: apidock
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000

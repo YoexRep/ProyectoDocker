@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbdock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dbdock
+  template:
+    metadata:
+      labels:
+        app: dbdock
+    spec:
+      containers:
+        - name: dbdock
+          image: us-east5-docker.pkg.dev/skilled-duality-441619-j5/protectodockergcloud/container_db_postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: "bd_saludos"
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbdock-service
+spec:
+  selector:
+    app: dbdock
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

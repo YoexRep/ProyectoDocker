@@ -1,0 +1,53 @@
+yaml
+CopiarEditar
+name: Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main  # Cambia a la rama que uses para producción
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker us-east5-docker.pkg.dev
+
+      - name: Build and push frontend Docker image
+        run: |
+          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock ./frontend
+          docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock
+
+      - name: Build and push API Docker image
+        run: |
+          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock ./api
+          docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock
+
+      - name: Get GKE credentials
+        run: |
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --region ${{ secrets.GKE_ZONE }}
+
+      - name: Deploy frontend to GKE
+        run: |
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_FRONTEND }} frontdock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock --record
+
+      - name: Deploy API to GKE
+        run: |
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock --record
+

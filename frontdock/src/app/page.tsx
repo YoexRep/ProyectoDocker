@@ -18,9 +18,11 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Saludos:</h1>
-      <button onClick={() => handleSaludo('1')}>Saludame con 1 </button>
-      <button onClick={() => handleSaludo('2')}>Saludame con 2 </button>
+      <h1>Saludos ahora con worflows:</h1>
+
+      <button onClick={() => handleSaludo("1")}>Saludame con 1</button>
+      <button onClick={() => handleSaludo("2")}>Saludame con 2 </button>
+      <button onClick={() => handleSaludo("3")}>Saludame con 3 </button>
     </div>
   );
 }

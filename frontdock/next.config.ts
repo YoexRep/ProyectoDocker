@@ -6,8 +6,8 @@ const nextConfig = {
   },
   // Añade esto para forzar el host:
   serverOptions: {
-    host: '0.0.0.0',
-  }
+    host: "0.0.0.0",
+  },
 };
 
 export default nextConfig;
