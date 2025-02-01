@@ -2,6 +2,8 @@
 
 Este proyecto es un boilerplate que utiliza Docker para montar un entorno de desarrollo completo con solo un comando. Está diseñado para facilitar la práctica y el desarrollo de aplicaciones web modernas, incluyendo un frontend, un backend, una base de datos y una herramienta de administración de bases de datos.
 
+Adicional al despliegue local con Docker, se integró metodología ágil para CI/CD, con GitHub Actions desplegando el proyecto en un clúster de Google Kubernetes.
+
 ## 🚀 Características
 
 - **Frontend**: Next.js
