@@ -28,12 +28,12 @@ jobs:
 
       - name: Build and push frontend Docker image
         run: |
-          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock ./frontend
+          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock ./frontdock
           docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock
 
       - name: Build and push API Docker image
         run: |
-          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock ./api
+          docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock ./apidock
           docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock
 
       - name: Get GKE credentials
