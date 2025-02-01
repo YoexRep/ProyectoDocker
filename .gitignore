@@ -1,5 +1,6 @@
 #Ignorar arhivos de la api
 .env
+key.json
 apidock/node_modules
 apidock/.env
 
