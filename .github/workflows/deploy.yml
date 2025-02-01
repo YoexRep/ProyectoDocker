@@ -1,9 +1,11 @@
+#Corre si los test pasaron
 name: Deploy to GKE
 
 on:
-  push:
-    branches:
-      - main # Cambia si usas otra rama para producción
+  workflow_run:
+    workflows: ["Run tests for API and Frontend"]
+    types:
+      - completed
 
 jobs:
   build-and-deploy:

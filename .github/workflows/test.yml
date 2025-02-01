@@ -1,0 +1,54 @@
+name: Run tests for API and Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js for API
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install dependencies for API
+        run: |
+          cd apidock
+          npm install
+
+      - name: Run tests for API
+        run: |
+          cd apidock
+          npm test
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js for Frontend
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install dependencies for Frontend
+        run: |
+          cd frontdock
+          npm install
+
+      - name: Run ESLint for Frontend
+        run: |
+          cd frontdock
+          npm run lint
+
+      - name: Run tests for Frontend
+        run: |
+          cd frontdock
+          npm run test

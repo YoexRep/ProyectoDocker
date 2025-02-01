@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontdock
-          image: us-east5-docker.pkg.dev/skilled-duality-441619-j5/protectodockergcloud/container_frontdock@sha256:94eb99d5afa40ff89dbe57496da5346f16d70e1b58ed3c6f15746287d0047435
+          image: us-east5-docker.pkg.dev/skilled-duality-441619-j5/protectodockergcloud/container_frontdock
           ports:
             - containerPort: 3000
           env:
