@@ -36,14 +36,17 @@ jobs:
           docker build -t us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock ./apidock
           docker push us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock
 
+      - name: Install GKE auth plugin
+        run: gcloud components install gke-gcloud-auth-plugin
+
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --region ${{ secrets.GKE_ZONE }}
 
       - name: Deploy frontend to GKE
         run: |
-          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_FRONTEND }} frontdock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock --record --namespace=default
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_FRONTEND }} frontdock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_frontdock --namespace=default
 
       - name: Deploy API to GKE
         run: |
-          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/container_apidock --record --namespace=default
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT_API }} apidock=us-east5-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/protectodockergcloud/c
