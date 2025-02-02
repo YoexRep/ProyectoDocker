@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS t_saludos (
 );
 
 INSERT INTO t_saludos (f_saludo) VALUES
-('Hola primer saludo Actualizado workflow 1'),
-('Hola segundo saludo Actualizado workflow 2'),
-('Hola tercer saludo Actualizado workflow 3');
+('Hola mundo!'),
+('Buenas a todos!');

@@ -8,14 +8,24 @@ describe("Homepage", () => {
 
   // });
 
-  it("should renders 'Saludos'", () => {
+  it("should renders 'Mensaje oculto'", () => {
     render(<Homepage />);
 
-    expect(screen.getByText("Saludos ahora con worflows:")).toBeInTheDocument();
+    expect(screen.getByText("Mensaje oculto")).toBeInTheDocument();
   });
 
-  it("should renders 'Saludame con 1'", () => {
+  it("should render buttons with text 'Mostrar mensaje' followed by anything", () => {
     render(<Homepage />);
-    expect(screen.getByText(/Saludame con 1/i)).toBeInTheDocument();
+
+    // Busca todos los elementos que coincidan con la expresión regular
+    const buttons = screen.getAllByText(/Mostrar mensaje.*/i);
+
+    // Verifica que hay exactamente 3 botones
+    expect(buttons).toHaveLength(3);
+
+    // Opcional: Verifica que cada botón tenga el texto esperado
+    buttons.forEach((button, index) => {
+      expect(button).toHaveTextContent(`Mostrar mensaje ${index + 1}`);
+    });
   });
 });
