@@ -25,23 +25,23 @@ export default function Home() {
       <h1
         className={`border border-black border-[5px] p-4 mb-4 text-center w-[800px] h-[500px] flex items-center justify-center text-2xl ${saludo}`}
       >
-        {saludo || "Mensaje oculto"}
+        {saludo || "Mensaje oculto actualizado con cicd"}
       </h1>
       <div className="space-x-4">
         <button
-          className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+          className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
           onClick={() => handleSaludo("1")}
         >
-          Mostrar mensaje 1
+          Mostrar mensajes 1
         </button>
         <button
-          className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+          className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
           onClick={() => handleSaludo("2")}
         >
           Mostrar mensaje 2
         </button>
         <button
-          className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+          className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
           onClick={() => handleSaludo("3")}
         >
           Mostrar mensaje 3
