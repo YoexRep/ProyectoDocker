@@ -32,7 +32,7 @@ export default function Home() {
           className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
           onClick={() => handleSaludo("1")}
         >
-          Mostrar mensajes 1
+          Mostrar mensaje 1
         </button>
         <button
           className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"

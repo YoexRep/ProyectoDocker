@@ -11,7 +11,9 @@ describe("Homepage", () => {
   it("should renders 'Mensaje oculto'", () => {
     render(<Homepage />);
 
-    expect(screen.getByText("Mensaje oculto")).toBeInTheDocument();
+    expect(
+      screen.getByText("Mensaje oculto actualizado con cicd")
+    ).toBeInTheDocument();
   });
 
   it("should render buttons with text 'Mostrar mensaje' followed by anything", () => {
