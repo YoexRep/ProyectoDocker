@@ -50,7 +50,10 @@ services:
     ports:
       - "5433:5432" #Usamos el 5433 para no tener conflicto con el 5432 de la base de datos local
     volumes:
-      - db_data:/var/lib/postgresql/data
+      # Para Postgres 18+ es recomendable montar en /var/lib/postgresql
+      # (no en /var/lib/postgresql/data) para evitar problemas de formato
+      # y permitir futuros pg_upgrade correctamente.
+      - db_data:/var/lib/postgresql
     networks:
       - docknet
 
